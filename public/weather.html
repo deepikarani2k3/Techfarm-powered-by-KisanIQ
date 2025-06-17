@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Weather</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/public.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #f1f8e9);
+      text-align: center;
+      padding: 40px;
+    }
+
+    .weather-box {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      margin-top: 40px;
+    }
+
+    .weather-box h2 {
+      color: #2e7d32;
+    }
+
+    .weather-box p {
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌦 Live Weather at Your Location</h1>
+  <div class="weather-box" id="weatherInfo">
+    <p>Detecting your location...</p>
+  </div>
+
+  <script>
+    const apiKey = '7260a2b34c8ade2fb13cbe6f06b7818b'; 
+    function fetchWeather(lat, lon) {
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const weatherDiv = document.getElementById("weatherInfo");
+          const city = data.name;
+          const temp = data.main.temp;
+          const desc = data.weather[0].description;
+          const humidity = data.main.humidity;
+
+          weatherDiv.innerHTML = `
+            <h2>${city}</h2>
+            <p><strong>Temperature:</strong> ${temp}°C</p>
+            <p><strong>Condition:</strong> ${desc}</p>
+            <p><strong>Humidity:</strong> ${humidity}%</p>
+          `;
+        })
+        .catch(err => {
+          document.getElementById("weatherInfo").innerHTML = "Unable to get weather data.";
+          console.error(err);
+        });
+    }
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          fetchWeather(lat, lon);
+        }, () => {
+          document.getElementById("weatherInfo").innerHTML = "Location access denied.";
+        });
+      } else {
+        document.getElementById("weatherInfo").innerHTML = "Geolocation is not supported by your browser.";
+      }
+    }
+
+    getLocation();
+  </script>
+
+</body>
+</html>

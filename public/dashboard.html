@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Techfarm Dashboard</title>
+  <link rel="stylesheet" href="css/public.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background: linear-gradient(to right, #f1f8e9, #e0f7fa);
+      font-family: 'Segoe UI', sans-serif;
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    .navbar {
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .dashboard-header {
+      text-align: center;
+      margin: 50px 0 30px;
+      color: #1b5e20;
+      animation: fadeInDown 1s ease;
+    }
+
+    .dashboard-header h1 {
+      font-weight: bold;
+      font-size: 2.5rem;
+    }
+
+    .dashboard-header p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    .card {
+      border: none;
+      border-radius: 25px;
+      padding: 15px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      min-height: 220px;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-title {
+      font-weight: 600;
+      color: #2e7d32;
+    }
+
+    .btn-success {
+      border-radius: 30px;
+      font-weight: 500;
+      padding: 6px 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #e8f5e9;
+      border-radius: 20px 20px 0 0;
+      margin-top: 50px;
+      color: #4e4e4e;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .card {
+        margin-bottom: 20px;
+      }
+    }
+
+    /* DARK MODE */
+    .dark-mode {
+      background-color: #121212 !important;
+      color: #fff !important;
+    }
+
+    .dark-mode .navbar {
+      background-color: #1e1e1e !important;
+    }
+
+    .dark-mode .card {
+      background-color: #2a2a2a;
+      color: #fff;
+    }
+
+    .dark-mode .btn-success {
+      background-color: #4caf50 !important;
+    }
+
+    .dark-mode footer {
+      background-color: #1f1f1f;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-dark bg-success px-4 d-flex justify-content-between">
+    <span class="navbar-brand mb-0 h1">🌿 Techfarm Dashboard</span>
+    <div class="d-flex align-items-center">
+      <span class="text-white me-3">👤 <span id="username">Loading...</span></span>
+      <button id="themeToggle" class="btn btn-light btn-sm me-2">Dark Mode</button>
+      <a href="/logout" class="btn btn-light btn-sm">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="dashboard-header">
+      <h1>Welcome to Techfarm</h1>
+      <p>Your All-in-One Smart Agriculture Assistant</p>
+    </div>
+
+    <div class="row g-4 text-center">
+      <div class="col-lg-4 col-md-6">
+        <div class="card shadow-lg h-100">
+          <div class="card-body">
+            <h5 class="card-title">🌾 Crop Info</h5>
+            <p class="card-text">Know what crops grow best in your area.</p>
+            <a href="crops.html" class="btn btn-success btn-sm">Explore</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card shadow-lg h-100">
+          <div class="card-body">
+            <h5 class="card-title">☀️ Weather</h5>
+            <p class="card-text">Get real-time weather forecast updates.</p>
+            <a href="weather.html" class="btn btn-success btn-sm">Check Weather</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card shadow-lg h-100">
+          <div class="card-body">
+            <h5 class="card-title">🦠 Disease Info</h5>
+            <p class="card-text">Identify and prevent crop diseases early.</p>
+            <a href="disease.html" class="btn btn-success btn-sm">Diagnose</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card shadow-lg h-100">
+          <div class="card-body">
+            <h5 class="card-title">📱 Calculators</h5>
+            <p class="card-text">Use smart farm calculators & tools.</p>
+            <a href="calculator.html" class="btn btn-success btn-sm">Explore</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card shadow-lg h-100">
+          <div class="card-body">
+            <h5 class="card-title">📈 Analytics</h5>
+            <p class="card-text">View farm trends, usage insights, and progress.</p>
+            <a href="#" class="btn btn-success btn-sm">Coming Soon</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card shadow-lg h-100">
+          <div class="card-body">
+            <h5 class="card-title">🧠 AI Crop Doctor</h5>
+            <p class="card-text">Coming soon: Diagnose crop problems with AI.</p>
+            <a href="#" class="btn btn-success btn-sm">Coming Soon</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 KisanIQ | Empowering Agriculture with Technology</p>
+  </footer>
+
+  <script>
+   
+    fetch('/api/user')
+      .then(res => res.json())
+      .then(data => {
+        if (data.username) {
+          document.getElementById('username').innerText = data.username;
+        }
+      });
+
+    
+    const toggleBtn = document.getElementById('themeToggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      toggleBtn.innerText = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+    });
+  </script>
+
+</body>
+</html>

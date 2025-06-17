@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Crop Disease Diagnosis | Techfarm</title>
+  <link rel="stylesheet" href="css/public.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+  <div class="container my-5">
+    <h2 class="text-center mb-4">🦠 Crop Disease Diagnosis</h2>
+
+    <form id="diseaseForm" class="bg-white p-4 rounded shadow mb-4">
+      <div class="row mb-3">
+        <div class="col">
+          <label for="crop" class="form-label">Select Crop</label>
+          <select id="crop" class="form-select" required>
+            <option value="">--Choose--</option>
+            <option value="wheat">Wheat</option>
+            <option value="rice">Rice</option>
+            <option value="cotton">Cotton</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="symptom" class="form-label">Symptom Observed</label>
+          <select id="symptom" class="form-select" required>
+            <option value="">--Choose--</option>
+            <option value="yellowing">Yellowing of Leaves</option>
+            <option value="spots">Spots on Leaves</option>
+            <option value="wilting">Wilting or Drying</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success w-100">Diagnose</button>
+    </form>
+
+    <div id="diseaseResult"></div>
+  </div>
+
+  <script>
+    document.getElementById('diseaseForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const crop = document.getElementById('crop').value;
+      const symptom = document.getElementById('symptom').value;
+      const resultDiv = document.getElementById('diseaseResult');
+
+      let disease = "No disease matched.";
+      let solution = "Try adjusting inputs or consult agri expert.";
+
+      
+      if (crop === "wheat" && symptom === "yellowing") {
+        disease = "Leaf Rust";
+        solution = "Use fungicide like Propiconazole. Ensure good air flow.";
+      } else if (crop === "rice" && symptom === "spots") {
+        disease = "Brown Spot";
+        solution = "Apply Mancozeb spray. Use resistant varieties.";
+      } else if (crop === "cotton" && symptom === "wilting") {
+        disease = "Verticillium Wilt";
+        solution = "Avoid excessive irrigation. Rotate crops.";
+      }
+
+      resultDiv.innerHTML = `
+        <div class="alert alert-info">
+          <h5>🧬 Disease: ${disease}</h5>
+          <p><strong>🩺 Solution:</strong> ${solution}</p>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>
